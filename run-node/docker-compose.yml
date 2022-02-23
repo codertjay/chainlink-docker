@@ -1,22 +1,67 @@
+# version: '3'
+# services:
+#   pg_chainlink:
+
+#     image: "postgres"
+#     ports:
+#       - "5432:5432"
+#     env_file:
+#       - database.env
+#     volumes:
+#       # [PATH_TO_POSTGRES_DATA]:/var/lib/postgressql/data/
+#       - /Library/PostgreSQL/9.6/data/:/var/lib/postgressql/data/
+#   chainlink:
+#     image: "smartcontract/chainlink:1.1.1"
+#     env_file: .env
+#     depends_on:
+#       - pg_chainlink
+#     ports:
+#       - "6688:6688"
+#     volumes:
+#       # [PATH_TO_REPO_CHAINLINK_VOLUME]:/chainlink/
+#       - /mnt/c/Users/Codertjay/PycharmProjects/chainlink-fun/run-node/chainlink-volume/:/chainlink/
+#     command: node start --password /chainlink/password.txt --api /chainlink/apicredentials.txt 
+
 version: '3'
 services:
-  pg_chainlink:
+  db:
+    container_name: postgresql_db
     image: "postgres"
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: chainlink-fun
     ports:
       - "5432:5432"
-    env_file:
-      - database.env
-    volumes:
-      # [PATH_TO_POSTGRES_DATA]:/var/lib/postgressql/data/
-      - /Library/PostgreSQL/9.6/data/:/var/lib/postgressql/data/
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@root.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_LISTEN_PORT: 82
+    ports:
+      - "5050:82"
+ 
   chainlink:
-    image: "smartcontract/chainlink"
+    image: "smartcontract/chainlink:1.1.1"
     env_file: .env
     depends_on:
-      - pg_chainlink
+      - db
     ports:
       - "6688:6688"
     volumes:
       # [PATH_TO_REPO_CHAINLINK_VOLUME]:/chainlink/
-      - /Users/chrispena/chainlink-volume/:/chainlink/
+      - /mnt/c/Users/Codertjay/PycharmProjects/chainlink-fun/run-node/chainlink-volume/:/chainlink/
     command: node start --password /chainlink/password.txt --api /chainlink/apicredentials.txt 
+
+
+
+
+
+
+
+
