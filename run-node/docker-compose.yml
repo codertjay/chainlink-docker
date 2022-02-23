@@ -55,7 +55,7 @@ services:
       - "6688:6688"
     volumes:
       # [PATH_TO_REPO_CHAINLINK_VOLUME]:/chainlink/
-      - /mnt/c/Users/Codertjay/PycharmProjects/chainlink-fun/run-node/chainlink-volume/:/chainlink/
+      - C:\Users\Codertjay\PycharmProjects\chainlink-fun\run-node\chainlink-volume\:/chainlink/
     command: node start --password /chainlink/password.txt --api /chainlink/apicredentials.txt 
 
 
