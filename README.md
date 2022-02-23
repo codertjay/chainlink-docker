@@ -1,4 +1,4 @@
-# Chainlink Fun
+# Chainlink Docker
 > Learn about chainlink by working through basic examples.
 
 ## Deploy Chainlink Node
@@ -7,7 +7,8 @@
 
 #### Requirements
 - Install [Docker](https://docs.docker.com/get-docker/)
-- Install [Postgres](https://www.postgresql.org/)
+- Install Postgres  in docker
+- Install PgAdmin4 in docker
 - Create an [Infura](https://infura.io/) account
   - Click the `Projects` section and create a new project.
   - In the `KEYS` section you will see a list of different credentials. Under `ENDPOINTS` tab change the select to `Ropsten`.
